@@ -7,13 +7,21 @@ def ft_progress(listy):
     cerr = "]"    
     time_s = t.time()
     i = 1
+    f_pr = 0
+    proc = 1
     for elem in listy:
         time_n = t.time()
         time_c = time_n - time_s
         if listy[-1]/42 * i <= elem:
             i += 1
+        if int((elem/listy[-1]) * 100) == proc:
+            f_pr = time_c / ((elem/listy[-1]) * 100)
+            proc += 1
+        est_t = f_pr * (100 - (int((elem/listy[-1]) * 100)))
+            # f_pr =  time_c / ((elem/listy[-1]) * 100)
         string = "[" + kata.rjust(i, '=') + cerr.rjust(42 - i + 2, " ")
-        sys.stdout.write("ETA: {:.2f}s [{:.0f}%] {s}\r".format(time_c, elem/listy[-1] * 100, s=string))
+        est_time = f_pr * time_c
+        sys.stdout.write("ETA: {:.2f}s  [{:.0f}%] {} [{}/{}]| elapsed time {:.2f}s \r".format(est_t, elem/listy[-1] * 100, string, elem + 1, listy[-1] + 1, time_c))
         
         sys.stdout.flush()
         # sys.stdout.write("ETA: %d%% %d  \r" % (elem) % (time_s)  )
