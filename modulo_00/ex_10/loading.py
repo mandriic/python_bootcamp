@@ -1,7 +1,6 @@
 import time as t
 import sys
 def ft_progress(listy):
-    print(listy)
     print("Loading")
     kata = ">"
     cerr = "]"    
